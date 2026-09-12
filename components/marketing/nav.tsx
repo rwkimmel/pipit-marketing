@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnalyticsLink } from "@/components/analytics/analytics-link";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { siteContent } from "@/content/site";
 
 export function MarketingNav() {
@@ -14,7 +15,7 @@ export function MarketingNav() {
   return (
     <header className="site-nav">
       <a className="nav-brand" href="#top" aria-label="Pipit home" onClick={closeMenu}>
-        Pipit
+        <BrandLogo className="nav-logo" priority variant="nav" />
       </a>
       <button
         aria-controls="primary-navigation"

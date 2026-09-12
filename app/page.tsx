@@ -216,6 +216,8 @@ export default function Home() {
 }
 
 function ProductPreview() {
+  const showDevelopmentLabel = process.env.NODE_ENV !== "production";
+
   return (
     <aside className="product-preview" aria-label="Illustrative Pipit product preview placeholder">
       <div className="preview-topbar">
@@ -245,7 +247,11 @@ function ProductPreview() {
           </div>
         </div>
       </div>
-      <p>Product-preview placeholder. Approved screenshots will replace this area.</p>
+      {showDevelopmentLabel ? (
+        <p className="development-label">
+          Product-preview placeholder. Approved screenshots will replace this area.
+        </p>
+      ) : null}
     </aside>
   );
 }

@@ -128,11 +128,9 @@ footer[id] {
 }
 
 .nav-brand {
-  color: var(--color-ink);
-  font-family: var(--font-manrope), Arial, sans-serif;
-  font-size: 1.65rem;
-  font-weight: 900;
-  letter-spacing: 0;
+  align-items: center;
+  display: inline-flex;
+  min-width: 7.6rem;
 }
 
 .nav-links {
@@ -336,9 +334,16 @@ footer[id] {
   max-width: 100%;
 }
 
+.nav-logo {
+  display: block;
+  height: auto;
+  width: 7.5rem;
+}
+
 .hero-logo-frame .brand-logo-image {
   display: block;
-  width: 100%;
+  margin: 0 auto;
+  width: min(76%, 26rem);
 }
 
 .microcopy,
@@ -364,6 +369,11 @@ small {
   display: grid;
   gap: 0.85rem;
   padding: 1rem;
+}
+
+.development-label {
+  color: color-mix(in srgb, var(--color-ink) 58%, white);
+  font-size: 0.9rem;
 }
 
 .preview-topbar,
@@ -829,14 +839,13 @@ blockquote {
 }
 
 .final-logo {
-  background: var(--color-warm-white);
-  border-radius: 8px;
-  max-width: min(18rem, 72vw);
+  max-width: min(21rem, 78vw);
 }
 
 .site-footer {
-  background: white;
-  border-top: 1px solid color-mix(in srgb, var(--color-gray) 74%, white);
+  background: var(--color-ink);
+  border-top: 1px solid color-mix(in srgb, var(--color-warm-white) 14%, transparent);
+  color: var(--color-warm-white);
   padding: 1.7rem max(1.25rem, calc((100vw - 1180px) / 2));
 }
 
@@ -852,7 +861,7 @@ blockquote {
 }
 
 .footer-logo {
-  max-width: 8.8rem;
+  max-width: 10rem;
 }
 
 .footer-links {
@@ -863,6 +872,11 @@ blockquote {
 
 .footer-links a {
   font-weight: 800;
+}
+
+.site-footer p,
+.site-footer a {
+  color: var(--color-warm-white);
 }
 
 @media (max-width: 760px) {
@@ -916,7 +930,15 @@ blockquote {
   }
 
   .hero-logo-frame .brand-logo-image {
-    max-width: 100%;
+    width: min(86%, 20rem);
+  }
+
+  .nav-brand {
+    min-width: 6.6rem;
+  }
+
+  .nav-logo {
+    width: 6.6rem;
   }
 
   .button {

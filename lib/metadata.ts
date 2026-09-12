@@ -20,4 +20,18 @@ export const siteMetadata: Metadata = {
     description:
       "Simple, capable salon management software built by salon owners. Pipit is preparing for its first salons.",
   },
+  icons: {
+    icon: [
+      {
+        url: "/brand/Pipit square app favicon logo.png",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/brand/Pipit square app favicon logo.png",
+        type: "image/png",
+      },
+    ],
+  },
 };
