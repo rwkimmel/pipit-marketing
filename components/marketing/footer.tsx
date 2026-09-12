@@ -1,12 +1,12 @@
-import { LogoPlaceholder } from "@/components/ui/logo-placeholder";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { siteContent } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" id="footer">
       <div className="footer-inner">
-        <div>
-          <LogoPlaceholder />
+        <div className="footer-brand">
+          <BrandLogo className="footer-logo" variant="footer" />
           <p>{siteContent.footer.tagline}</p>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">

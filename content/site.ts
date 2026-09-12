@@ -104,7 +104,6 @@ export const siteContent = {
         headline: "It should make sense.",
         body: [
           "Pipit is designed around the way salon teams actually work-not around software terminology.",
-          "Less training. Fewer clicks. Clearer choices.",
         ],
       },
       {
@@ -112,14 +111,12 @@ export const siteContent = {
         headline: "Simple doesn't mean stripped down.",
         body: [
           "Pipit grew up running a real salon. Scheduling, clients, checkout, staff, reporting and the complicated edge cases that don't show up in a software demo all matter.",
-          "Simple on the surface. Serious underneath.",
         ],
       },
       {
         title: "Fair",
         headline: "You shouldn't be punished for growing.",
         body: [
-          "We believe salon software pricing should be understandable before you get the invoice.",
           "Simple per-location pricing. No per-employee penalty. No mystery bill.",
         ],
       },
@@ -265,9 +262,9 @@ export const siteContent = {
     links: [
       { label: "Early Access", href: "#early-access" },
       { label: "Our Story", href: "#our-story" },
-      { label: "Privacy", href: "#early-access" },
-      { label: "Terms", href: "#early-access" },
-      { label: "Contact", href: "#early-access" },
+      { label: "Privacy", href: "#footer" },
+      { label: "Terms", href: "#footer" },
+      { label: "Contact", href: "#footer" },
     ],
     copyright: "© 2026 Pipit",
   },

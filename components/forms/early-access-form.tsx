@@ -105,10 +105,12 @@ export function EarlyAccessForm() {
 
   return (
     <form className="early-access-form" noValidate onSubmit={handleSubmit}>
-      <p className="form-note">
-        This form is wired to a local submission stub for now. It does not persist data
-        until a real backend or CRM is connected.
-      </p>
+      {process.env.NODE_ENV !== "production" ? (
+        <p className="form-note">
+          This form is wired to a local submission stub for now. It does not persist data
+          until a real backend or CRM is connected.
+        </p>
+      ) : null}
       <div className="form-grid">
         <TextField
           error={errors.firstName}

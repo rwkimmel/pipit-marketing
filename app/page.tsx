@@ -1,9 +1,9 @@
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { AnalyticsLink } from "@/components/analytics/analytics-link";
 import { EarlyAccessForm } from "@/components/forms/early-access-form";
 import { Faq } from "@/components/marketing/faq";
 import { Footer } from "@/components/marketing/footer";
 import { MarketingNav } from "@/components/marketing/nav";
-import { LogoPlaceholder } from "@/components/ui/logo-placeholder";
 import { siteContent } from "@/content/site";
 
 export default function Home() {
@@ -35,7 +35,12 @@ export default function Home() {
             </div>
             <p className="microcopy">{siteContent.hero.smallLine}</p>
           </div>
-          <ProductPreview />
+          <div className="hero-visual" aria-label="Pipit brand and product preview">
+            <div className="hero-logo-frame">
+              <BrandLogo priority />
+            </div>
+            <ProductPreview />
+          </div>
         </section>
 
         <section className="value-strip" aria-labelledby="value-title">
@@ -43,7 +48,7 @@ export default function Home() {
             <h2 id="value-title">{siteContent.valueStrip.headline}</h2>
             <div className="three-grid">
               {siteContent.valueStrip.items.map((item) => (
-                <article className="mini-card" key={item.title}>
+                <article className={`mini-card ${item.title.toLowerCase()}`} key={item.title}>
                   <span className="dot" aria-hidden="true" />
                   <h3>{item.title}</h3>
                   <p>{item.copy}</p>
@@ -190,7 +195,7 @@ export default function Home() {
 
         <section className="final-cta" aria-labelledby="final-cta-title">
           <div className="section-shell compact">
-            <LogoPlaceholder />
+            <BrandLogo className="final-logo" variant="cta" />
             <h2 id="final-cta-title">{siteContent.finalCta.headline}</h2>
             <p className="section-lede">{siteContent.finalCta.subhead}</p>
             <p>{siteContent.finalCta.body}</p>

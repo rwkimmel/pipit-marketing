@@ -32,6 +32,18 @@ body {
   line-height: 1.6;
 }
 
+body::before {
+  background:
+    radial-gradient(circle at 14% 16%, color-mix(in srgb, var(--color-yellow) 20%, transparent) 0 9rem, transparent 9.2rem),
+    radial-gradient(circle at 92% 7%, color-mix(in srgb, var(--color-pink) 13%, transparent) 0 8rem, transparent 8.2rem);
+  content: "";
+  inset: 0;
+  opacity: 0.62;
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -65,13 +77,13 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.8rem, 6.6vw, 5.05rem);
-  max-width: 12ch;
+  font-size: clamp(2.72rem, 6.1vw, 5rem);
+  max-width: 13ch;
 }
 
 h2 {
-  font-size: clamp(2rem, 5vw, 3.65rem);
-  max-width: 14ch;
+  font-size: clamp(1.85rem, 3.35vw, 2.9rem);
+  max-width: 18ch;
 }
 
 h3 {
@@ -82,10 +94,15 @@ p {
   margin: 0;
 }
 
+section[id],
+footer[id] {
+  scroll-margin-top: 88px;
+}
+
 .section-shell {
   margin: 0 auto;
   max-width: 1180px;
-  padding: 5.75rem 1.25rem;
+  padding: 4.45rem 1.25rem;
   width: 100%;
 }
 
@@ -110,6 +127,14 @@ p {
   z-index: 20;
 }
 
+.nav-brand {
+  color: var(--color-ink);
+  font-family: var(--font-manrope), Arial, sans-serif;
+  font-size: 1.65rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
 .nav-links {
   align-items: center;
   display: flex;
@@ -126,6 +151,36 @@ p {
 
 .nav-links a:not(.button):hover {
   background: color-mix(in srgb, var(--color-bird-teal) 14%, transparent);
+}
+
+.menu-toggle {
+  align-items: center;
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 70%, white);
+  border-radius: 999px;
+  cursor: pointer;
+  display: none;
+  height: 2.85rem;
+  justify-content: center;
+  padding: 0;
+  width: 2.85rem;
+}
+
+.menu-toggle span {
+  background: var(--color-ink);
+  border-radius: 999px;
+  display: block;
+  height: 2px;
+  position: absolute;
+  width: 1.15rem;
+}
+
+.menu-toggle span:nth-child(1) {
+  transform: translateY(-6px);
+}
+
+.menu-toggle span:nth-child(3) {
+  transform: translateY(6px);
 }
 
 .logo-placeholder {
@@ -189,15 +244,16 @@ p {
 .hero {
   align-items: center;
   display: grid;
-  gap: 2.5rem;
+  gap: 2.1rem;
   grid-template-columns: minmax(0, 1fr);
-  padding-bottom: 3.35rem;
-  padding-top: 3.35rem;
+  padding-bottom: 3.15rem;
+  padding-top: 3.15rem;
+  position: relative;
 }
 
 .hero-copy {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.05rem;
 }
 
 .eyebrow {
@@ -212,7 +268,7 @@ p {
 .section-lede {
   color: var(--color-deep-teal);
   font-family: var(--font-manrope), Arial, sans-serif;
-  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   font-weight: 850;
   line-height: 1.18;
 }
@@ -231,6 +287,58 @@ p {
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 0.4rem;
+}
+
+.hero-visual {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-logo-frame {
+  align-items: center;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-warm-white) 88%, white), white),
+    var(--color-warm-white);
+  border: 1px solid color-mix(in srgb, var(--color-yellow) 42%, white);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+}
+
+.hero-logo-frame::before,
+.hero-logo-frame::after {
+  border-radius: 999px;
+  content: "";
+  position: absolute;
+}
+
+.hero-logo-frame::before {
+  background: var(--color-pink);
+  height: 0.65rem;
+  left: 1.25rem;
+  top: 1.25rem;
+  width: 0.65rem;
+}
+
+.hero-logo-frame::after {
+  background: var(--color-yellow);
+  bottom: 1.4rem;
+  height: 0.82rem;
+  right: 1.45rem;
+  width: 0.82rem;
+}
+
+.brand-logo-image {
+  height: auto;
+  max-width: 100%;
+}
+
+.hero-logo-frame .brand-logo-image {
+  display: block;
+  width: 100%;
 }
 
 .microcopy,
@@ -252,9 +360,9 @@ small {
 }
 
 .product-preview {
-  box-shadow: 0 24px 60px color-mix(in srgb, var(--color-deep-teal) 13%, transparent);
+  box-shadow: 0 20px 42px color-mix(in srgb, var(--color-deep-teal) 11%, transparent);
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
   padding: 1rem;
 }
 
@@ -322,13 +430,17 @@ small {
 }
 
 .value-strip,
-.story-band,
 .qualification-band {
   background: color-mix(in srgb, var(--color-bird-teal) 12%, var(--color-warm-white));
 }
 
+.story-band {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-peach) 14%, var(--color-warm-white)), color-mix(in srgb, var(--color-yellow) 10%, var(--color-warm-white)));
+}
+
 .value-strip h2 {
-  max-width: 19ch;
+  max-width: 22ch;
 }
 
 .three-grid,
@@ -337,7 +449,7 @@ small {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
-  margin-top: 2rem;
+  margin-top: 1.45rem;
 }
 
 .mini-card,
@@ -351,8 +463,24 @@ small {
 }
 
 .mini-card {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 72%, white);
+  border-radius: 8px;
   display: grid;
   gap: 0.55rem;
+  padding: 1rem;
+}
+
+.mini-card.easy {
+  border-top: 5px solid var(--color-teal);
+}
+
+.mini-card.capable {
+  border-top: 5px solid var(--color-pink);
+}
+
+.mini-card.fair {
+  border-top: 5px solid var(--color-yellow);
 }
 
 .dot {
@@ -364,7 +492,7 @@ small {
 
 .split-section {
   display: grid;
-  gap: 2rem;
+  gap: 1.65rem;
   grid-template-columns: 1fr;
 }
 
@@ -376,12 +504,21 @@ small {
 
 .stacked-cards {
   display: grid;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .rounded-card {
+  border-left: 5px solid var(--color-teal);
   display: grid;
   gap: 0.5rem;
+}
+
+.rounded-card:nth-child(2) {
+  border-left-color: var(--color-pink);
+}
+
+.rounded-card:nth-child(3) {
+  border-left-color: var(--color-yellow);
 }
 
 .closing-line,
@@ -393,30 +530,37 @@ small {
 
 blockquote {
   align-self: center;
+  background: color-mix(in srgb, white 74%, var(--color-warm-white));
+  border: 1px solid color-mix(in srgb, var(--color-peach) 46%, white);
   border-left: 6px solid var(--color-pink);
+  border-radius: 8px;
   color: var(--color-ink);
   font-family: var(--font-manrope), Arial, sans-serif;
   font-size: clamp(1.45rem, 3vw, 2.2rem);
   font-weight: 850;
   line-height: 1.17;
   margin: 0;
-  padding-left: 1.25rem;
+  padding: 1.4rem 1.4rem 1.4rem 1.25rem;
 }
 
 .placeholder-ui {
-  background: color-mix(in srgb, var(--color-teal) 9%, white);
+  background:
+    linear-gradient(180deg, white 0 2.1rem, color-mix(in srgb, var(--color-teal) 8%, white) 2.1rem),
+    white;
   border: 1px dashed color-mix(in srgb, var(--color-deep-teal) 42%, white);
   border-radius: 8px;
   display: grid;
   gap: 0.65rem;
   margin-bottom: 1rem;
-  min-height: 11rem;
+  min-height: 9.8rem;
   padding: 1rem;
+  position: relative;
 }
 
 .placeholder-ui span {
-  background: white;
+  background: color-mix(in srgb, var(--color-gray) 52%, white);
   border-radius: 6px;
+  min-height: 1.2rem;
 }
 
 .placeholder-ui span:nth-child(1) {
@@ -434,7 +578,7 @@ blockquote {
 .pillar {
   border-top: 5px solid var(--color-teal);
   display: grid;
-  gap: 0.7rem;
+  gap: 0.55rem;
 }
 
 .pillar:nth-child(2) {
@@ -451,12 +595,12 @@ blockquote {
 }
 
 .pricing-band {
-  background: color-mix(in srgb, var(--color-yellow) 15%, var(--color-warm-white));
+  background: color-mix(in srgb, var(--color-yellow) 12%, var(--color-warm-white));
 }
 
 .usage-card {
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 .meter-card {
@@ -485,7 +629,7 @@ blockquote {
 .feature-list,
 .checklist {
   display: grid;
-  gap: 0.7rem;
+  gap: 0.75rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -512,27 +656,47 @@ blockquote {
   gap: 0.8rem;
 }
 
+.qualification-band .section-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.qualification-band h2 {
+  max-width: 20ch;
+}
+
+.qualification-band .checklist {
+  grid-template-columns: 1fr;
+}
+
+.qualification-band .checklist li {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 64%, white);
+  border-radius: 8px;
+  padding: 0.8rem;
+}
+
 .form-section {
   align-items: start;
   display: grid;
-  gap: 2rem;
+  gap: 1.65rem;
   grid-template-columns: 1fr;
 }
 
 .early-access-form {
   display: grid;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .form-grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.9rem 1rem;
   grid-template-columns: 1fr;
 }
 
 .field {
   display: grid;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .field label,
@@ -547,9 +711,15 @@ blockquote {
   border: 2px solid color-mix(in srgb, var(--color-gray) 84%, white);
   border-radius: 8px;
   color: var(--color-ink);
-  min-height: 3.1rem;
+  min-height: 3rem;
   padding: 0.7rem 0.85rem;
   width: 100%;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--color-teal);
 }
 
 .field textarea {
@@ -594,13 +764,19 @@ blockquote {
 }
 
 .faq-list {
-  border-top: 1px solid var(--color-gray);
+  border: 1px solid color-mix(in srgb, var(--color-gray) 74%, white);
+  border-radius: 8px;
   display: grid;
-  margin-top: 2rem;
+  margin-top: 1.45rem;
+  overflow: hidden;
 }
 
 .faq-item {
   border-bottom: 1px solid var(--color-gray);
+}
+
+.faq-item:last-child {
+  border-bottom: 0;
 }
 
 .faq-button {
@@ -612,7 +788,7 @@ blockquote {
   display: flex;
   font-weight: 850;
   justify-content: space-between;
-  padding: 1.25rem 0;
+  padding: 1.05rem 1rem;
   text-align: left;
   width: 100%;
 }
@@ -626,11 +802,14 @@ blockquote {
 
 .faq-panel {
   color: color-mix(in srgb, var(--color-ink) 76%, white);
-  padding: 0 0 1.25rem;
+  padding: 0 1rem 1.05rem;
 }
 
 .final-cta {
-  background: var(--color-ink);
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--color-pink) 24%, transparent) 0 8rem, transparent 8.2rem),
+    radial-gradient(circle at 82% 68%, color-mix(in srgb, var(--color-yellow) 22%, transparent) 0 9rem, transparent 9.2rem),
+    var(--color-ink);
   color: var(--color-warm-white);
   text-align: center;
 }
@@ -645,24 +824,35 @@ blockquote {
 .final-cta h2,
 .final-cta p,
 .final-cta .section-lede,
-.final-cta .microcopy,
-.final-cta .logo-placeholder {
+.final-cta .microcopy {
   color: var(--color-warm-white);
 }
 
-.final-cta .logo-mark {
-  border-color: var(--color-yellow);
+.final-logo {
+  background: var(--color-warm-white);
+  border-radius: 8px;
+  max-width: min(18rem, 72vw);
 }
 
 .site-footer {
+  background: white;
   border-top: 1px solid color-mix(in srgb, var(--color-gray) 74%, white);
-  padding: 2rem max(1.25rem, calc((100vw - 1180px) / 2));
+  padding: 1.7rem max(1.25rem, calc((100vw - 1180px) / 2));
 }
 
 .footer-inner {
   align-items: start;
   display: grid;
-  gap: 1.5rem;
+  gap: 1.1rem;
+}
+
+.footer-brand {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.footer-logo {
+  max-width: 8.8rem;
 }
 
 .footer-links {
@@ -677,21 +867,65 @@ blockquote {
 
 @media (max-width: 760px) {
   .site-nav {
-    align-items: flex-start;
-    flex-direction: column;
+    min-height: 66px;
+    padding-bottom: 0.65rem;
+    padding-top: 0.65rem;
   }
 
   .nav-links {
-    flex-wrap: wrap;
+    background: white;
+    border: 1px solid color-mix(in srgb, var(--color-gray) 72%, white);
+    border-radius: 8px;
+    box-shadow: 0 14px 34px color-mix(in srgb, var(--color-ink) 9%, transparent);
+    display: none;
+    gap: 0.2rem;
+    left: 1rem;
+    padding: 0.65rem;
+    position: absolute;
+    right: 1rem;
+    top: calc(100% - 0.25rem);
+  }
+
+  .nav-links.is-open {
+    display: grid;
+  }
+
+  .nav-links a:not(.button),
+  .nav-links .button {
+    justify-content: flex-start;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.75rem;
     width: 100%;
   }
 
-  .nav-links a:not(.button) {
-    padding: 0.45rem 0.55rem;
+  .menu-toggle {
+    display: inline-flex;
+    position: relative;
   }
 
-  .nav-links .button {
-    min-height: 2.7rem;
+  .hero {
+    padding-top: 2.65rem;
+  }
+
+  .hero-visual {
+    gap: 0.8rem;
+  }
+
+  .hero-logo-frame {
+    min-height: auto;
+  }
+
+  .hero-logo-frame .brand-logo-image {
+    max-width: 100%;
+  }
+
+  .button {
+    min-height: 3.05rem;
+    width: 100%;
+  }
+
+  .cta-row {
+    width: 100%;
   }
 }
 
@@ -718,6 +952,14 @@ blockquote {
     align-items: center;
     grid-template-columns: 1fr auto;
   }
+
+  .footer-inner > p {
+    grid-column: 1 / -1;
+  }
+
+  .qualification-band .checklist {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 940px) {
@@ -725,5 +967,9 @@ blockquote {
   .split-section,
   .form-section {
     grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 0.96fr) minmax(28rem, 1.04fr);
   }
 }
