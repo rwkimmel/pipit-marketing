@@ -9,6 +9,7 @@ export type AnalyticsEventName =
   | "early_access_form_submit_attempted"
   | "early_access_form_submit_success"
   | "early_access_form_validation_error"
+  | "early_access_form_submit_failed"
   | "faq_opened";
 
 export type AnalyticsPayload = Record<string, string | number | boolean | null | undefined>;
