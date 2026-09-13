@@ -553,36 +553,29 @@ blockquote {
   padding: 1.4rem 1.4rem 1.4rem 1.25rem;
 }
 
-.placeholder-ui {
-  background:
-    linear-gradient(180deg, white 0 2.1rem, color-mix(in srgb, var(--color-teal) 8%, white) 2.1rem),
-    white;
-  border: 1px dashed color-mix(in srgb, var(--color-deep-teal) 42%, white);
+.product-screenshot-frame {
+  background: color-mix(in srgb, var(--color-bird-teal) 7%, white);
+  border: 1px solid color-mix(in srgb, var(--color-gray) 70%, white);
   border-radius: 8px;
-  display: grid;
-  gap: 0.65rem;
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--color-deep-teal) 8%, transparent);
   margin-bottom: 1rem;
-  min-height: 9.8rem;
+  overflow: hidden;
+}
+
+.product-screenshot {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.screenshot-card {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
-  position: relative;
 }
 
-.placeholder-ui span {
-  background: color-mix(in srgb, var(--color-gray) 52%, white);
-  border-radius: 6px;
-  min-height: 1.2rem;
-}
-
-.placeholder-ui span:nth-child(1) {
-  width: 66%;
-}
-
-.placeholder-ui span:nth-child(2) {
-  width: 92%;
-}
-
-.placeholder-ui span:nth-child(3) {
-  width: 54%;
+.product-proof-section {
+  max-width: 1240px;
 }
 
 .pillar {
@@ -948,6 +941,10 @@ blockquote {
 
   .cta-row {
     width: 100%;
+  }
+
+  .screenshot-card {
+    padding: 1rem;
   }
 }
 

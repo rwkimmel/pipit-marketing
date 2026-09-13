@@ -5,6 +5,7 @@ import { Faq } from "@/components/marketing/faq";
 import { Footer } from "@/components/marketing/footer";
 import { MarketingNav } from "@/components/marketing/nav";
 import { siteContent } from "@/content/site";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -91,16 +92,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section-shell" id="how-it-works" aria-labelledby="proof-title">
+        <section className="section-shell product-proof-section" id="how-it-works" aria-labelledby="proof-title">
           <p className="eyebrow">{siteContent.productProof.eyebrow}</p>
           <h2 id="proof-title">{siteContent.productProof.headline}</h2>
           <div className="proof-grid">
             {siteContent.productProof.cards.map((card) => (
               <article className="screenshot-card" key={card.title}>
-                <div className="placeholder-ui" aria-label="Illustrative product preview placeholder">
-                  <span />
-                  <span />
-                  <span />
+                <div className="product-screenshot-frame">
+                  <Image
+                    alt={card.image.alt}
+                    className="product-screenshot"
+                    height={card.image.height}
+                    sizes="(min-width: 1180px) 360px, (min-width: 760px) 30vw, calc(100vw - 4rem)"
+                    src={card.image.src}
+                    width={card.image.width}
+                  />
                 </div>
                 <h3>{card.title}</h3>
                 <p>{card.copy}</p>

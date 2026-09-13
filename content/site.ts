@@ -82,14 +82,32 @@ export const siteContent = {
     headline: "The simple part is what you see. The powerful part is underneath.",
     cards: [
       {
+        image: {
+          alt: "Pipit salon calendar showing a day schedule with multiple staff and appointments.",
+          height: 992,
+          src: "/product/pipit-calendar.png",
+          width: 1586,
+        },
         title: "A schedule you can actually read.",
         copy: "See what's happening, make changes quickly and keep the day moving.",
       },
       {
+        image: {
+          alt: "Pipit online booking interface showing service selection and available appointment times.",
+          height: 1024,
+          src: "/product/pipit-booking.png",
+          width: 1536,
+        },
         title: "Booking without the gymnastics.",
         copy: "Help clients find the right service, person and time without turning booking into homework.",
       },
       {
+        image: {
+          alt: "Pipit checkout interface showing services, payment options, and bill adjustments.",
+          height: 1024,
+          src: "/product/pipit-checkout.png",
+          width: 1536,
+        },
         title: "Checkout that keeps up with the front desk.",
         copy: "Services, tips, payments and the messy real-life situations that happen when clients check out.",
       },
