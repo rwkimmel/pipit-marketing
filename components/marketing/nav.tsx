@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnalyticsLink } from "@/components/analytics/analytics-link";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { siteContent } from "@/content/site";
+import Link from "next/link";
 
 export function MarketingNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,9 +15,9 @@ export function MarketingNav() {
 
   return (
     <header className="site-nav">
-      <a className="nav-brand" href="#top" aria-label="Pipit home" onClick={closeMenu}>
+      <Link className="nav-brand" href="/" aria-label="Pipit home" onClick={closeMenu}>
         <BrandLogo className="nav-logo" priority variant="nav" />
-      </a>
+      </Link>
       <button
         aria-controls="primary-navigation"
         aria-expanded={isMenuOpen}

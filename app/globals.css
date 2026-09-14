@@ -775,6 +775,16 @@ blockquote {
   font-size: 0.9rem;
 }
 
+.privacy-placeholder a,
+.legal-document a,
+.contact-email {
+  color: var(--color-deep-teal);
+  font-weight: 850;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.18em;
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -894,6 +904,87 @@ blockquote {
 .site-footer p,
 .site-footer a {
   color: var(--color-warm-white);
+}
+
+.legal-page,
+.contact-page {
+  background: color-mix(in srgb, var(--color-warm-white) 92%, white);
+}
+
+.legal-document {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 780px;
+  padding: 4rem 1.25rem 5rem;
+}
+
+.legal-document h1 {
+  font-size: clamp(2.4rem, 5vw, 4.1rem);
+  max-width: 14ch;
+}
+
+.legal-document h2 {
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  margin-top: 1.1rem;
+  max-width: none;
+}
+
+.legal-document p,
+.legal-document li {
+  color: color-mix(in srgb, var(--color-ink) 80%, white);
+  font-size: 1.02rem;
+}
+
+.legal-document ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.pending-config-note {
+  background: color-mix(in srgb, var(--color-yellow) 16%, white);
+  border: 1px solid color-mix(in srgb, var(--color-yellow) 62%, white);
+  border-radius: 8px;
+  color: var(--color-ink);
+  font-weight: 800;
+  padding: 0.85rem;
+}
+
+.contact-section {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.contact-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-copy p {
+  color: color-mix(in srgb, var(--color-ink) 78%, white);
+  font-size: 1.08rem;
+  max-width: 58ch;
+}
+
+.contact-panel,
+.early-access-callout {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 72%, white);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+}
+
+.contact-panel h2,
+.early-access-callout h2 {
+  font-size: 1.35rem;
+}
+
+.contact-email {
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 760px) {
@@ -1016,5 +1107,13 @@ blockquote {
 
   .hero {
     grid-template-columns: minmax(0, 0.96fr) minmax(28rem, 1.04fr);
+  }
+
+  .contact-section {
+    grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.95fr);
+  }
+
+  .contact-copy {
+    grid-row: span 2;
   }
 }

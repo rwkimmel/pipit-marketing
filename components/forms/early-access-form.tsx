@@ -5,6 +5,7 @@ import { siteContent } from "@/content/site";
 import type { EarlyAccessSubmission } from "@/lib/lead-capture";
 import { submitEarlyAccessLead } from "@/lib/lead-capture";
 import { trackEvent } from "@/lib/analytics";
+import Link from "next/link";
 
 type FormState = EarlyAccessSubmission;
 type Errors = Partial<Record<keyof FormState, string>>;
@@ -260,7 +261,10 @@ export function EarlyAccessForm() {
             {errors.consentEmailUpdates}
           </p>
         ) : null}
-        <p className="privacy-placeholder">{siteContent.earlyAccess.privacyPlaceholder}</p>
+        <p className="privacy-placeholder">
+          By joining, you agree that Pipit may use the information you provide to manage early
+          access and communicate with you about Pipit. <Link href="/privacy">Privacy Policy</Link>.
+        </p>
         {failureMessage ? (
           <p className="form-error" role="alert">
             {failureMessage}

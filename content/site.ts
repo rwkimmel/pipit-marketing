@@ -2,10 +2,10 @@ import type { AnalyticsEventName } from "@/lib/analytics";
 
 export const siteContent = {
   nav: [
-    { label: "Why Pipit", href: "#why-pipit" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Our Story", href: "#our-story" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Why Pipit", href: "/#why-pipit" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Our Story", href: "/#our-story" },
+    { label: "FAQ", href: "/#faq" },
   ],
   ctas: {
     primary: "Get Early Access",
@@ -282,11 +282,10 @@ export const siteContent = {
   footer: {
     tagline: "Salon software that actually makes sense.",
     links: [
-      { label: "Early Access", href: "#early-access" },
-      { label: "Our Story", href: "#our-story" },
-      { label: "Privacy", href: "#footer" },
-      { label: "Terms", href: "#footer" },
-      { label: "Contact", href: "#footer" },
+      { label: "Early Access", href: "/#early-access" },
+      { label: "Our Story", href: "/#our-story" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Contact", href: "/contact" },
     ],
     copyright: "© 2026 Pipit",
   },
