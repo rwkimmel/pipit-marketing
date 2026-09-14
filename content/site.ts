@@ -228,9 +228,13 @@ export const siteContent = {
       "Not sure / Prefer not to say",
     ],
     submit: "Join the Pipit List",
-    successHeadline: "You're in.",
+    successHeadline: "You're in. ✨",
     successBody:
       "Thanks for telling us about your salon. We'll keep you posted as Pipit gets closer to welcoming its first salons.",
+    consent:
+      "Email me about Pipit early access, product updates, and occasional research opportunities. I can unsubscribe anytime.",
+    privacyPlaceholder:
+      "By joining, you agree that Pipit may use the information you provide to manage early access and communicate with you about Pipit. Privacy Policy.",
   },
   faq: [
     {

@@ -10,25 +10,49 @@ export type EarlyAccessSubmission = {
   wish: string;
   spend: string;
   testingInterest: boolean;
+  consentEmailUpdates: boolean;
+  pageUrl?: string;
+  referrer?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
+  website?: string;
 };
 
 export type LeadCaptureResult = {
-  persisted: false;
+  persisted: boolean;
   message: string;
+  errors?: Record<string, string>;
 };
 
 export async function submitEarlyAccessLead(
   submission: EarlyAccessSubmission,
 ): Promise<LeadCaptureResult> {
-  await new Promise((resolve) => window.setTimeout(resolve, 450));
+  const response = await fetch("/api/early-access", {
+    body: JSON.stringify(submission),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
 
-  if (process.env.NODE_ENV === "development") {
-    console.info("[lead capture stub] Submission was not persisted.", submission);
+  const result = (await response.json().catch(() => null)) as
+    | { message?: string; ok?: boolean; persisted?: boolean; errors?: Record<string, string> }
+    | null;
+
+  if (!response.ok || !result?.ok) {
+    return {
+      errors: result?.errors,
+      persisted: false,
+      message:
+        result?.message || "Something went wrong while joining the list. Please try again.",
+    };
   }
 
   return {
-    persisted: false,
-    message:
-      "Demo submission received locally. No CRM, database, or production persistence is connected yet.",
+    persisted: Boolean(result.persisted),
+    message: result.message || "You're in.",
   };
 }

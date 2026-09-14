@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { siteContent } from "@/content/site";
 import type { EarlyAccessSubmission } from "@/lib/lead-capture";
 import { submitEarlyAccessLead } from "@/lib/lead-capture";
@@ -21,6 +21,8 @@ const initialState: FormState = {
   wish: "",
   spend: "",
   testingInterest: false,
+  consentEmailUpdates: false,
+  website: "",
 };
 
 const requiredFields: Array<keyof FormState> = [
@@ -33,7 +35,10 @@ const requiredFields: Array<keyof FormState> = [
   "providers",
   "currentSoftware",
   "spend",
+  "consentEmailUpdates",
 ];
+
+const attributionStorageKey = "pipit_attribution_v1";
 
 export function EarlyAccessForm() {
   const [form, setForm] = useState<FormState>(initialState);
@@ -41,6 +46,8 @@ export function EarlyAccessForm() {
   const [hasStarted, setHasStarted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [failureMessage, setFailureMessage] = useState<string | null>(null);
+  const attributionRef = useRef<Partial<FormState>>({});
 
   const fieldIds = useMemo(
     () => ({
@@ -54,9 +61,15 @@ export function EarlyAccessForm() {
       currentSoftware: "current-software",
       wish: "wish",
       spend: "spend",
+      consentEmailUpdates: "consent-email-updates",
+      website: "website",
     }),
     [],
   );
+
+  useEffect(() => {
+    attributionRef.current = getAttribution();
+  }, []);
 
   function updateField<K extends keyof FormState>(field: K, value: FormState[K]) {
     if (!hasStarted) {
@@ -77,6 +90,7 @@ export function EarlyAccessForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSuccessMessage(null);
+    setFailureMessage(null);
     trackEvent("early_access_form_submit_attempted");
 
     const nextErrors = validateForm(form);
@@ -91,11 +105,27 @@ export function EarlyAccessForm() {
 
     setIsSubmitting(true);
     try {
-      const result = await submitEarlyAccessLead(form);
-      trackEvent("early_access_form_submit_success", {
-        persisted: result.persisted,
+      const result = await submitEarlyAccessLead({
+        ...form,
+        ...attributionRef.current,
       });
-      setSuccessMessage(result.message);
+
+      if (!result.persisted) {
+        setErrors((current) => ({
+          ...current,
+          ...result.errors,
+        }));
+        setFailureMessage(result.message);
+        trackEvent("early_access_form_submit_failed", {
+          reason: result.errors ? "server_validation" : "service_error",
+        });
+        return;
+      }
+
+      trackEvent("early_access_form_submit_success", {
+        persisted: true,
+      });
+      setSuccessMessage(siteContent.earlyAccess.successBody);
       setForm(initialState);
       setHasStarted(false);
     } finally {
@@ -105,13 +135,18 @@ export function EarlyAccessForm() {
 
   return (
     <form className="early-access-form" noValidate onSubmit={handleSubmit}>
-      {process.env.NODE_ENV !== "production" ? (
-        <p className="form-note">
-          This form is wired to a local submission stub for now. It does not persist data
-          until a real backend or CRM is connected.
-        </p>
-      ) : null}
       <div className="form-grid">
+        <div className="field visually-hidden" aria-hidden="true">
+          <label htmlFor={fieldIds.website}>Website</label>
+          <input
+            autoComplete="off"
+            id={fieldIds.website}
+            onChange={(event) => updateField("website", event.target.value)}
+            tabIndex={-1}
+            type="text"
+            value={form.website}
+          />
+        </div>
         <TextField
           error={errors.firstName}
           id={fieldIds.firstName}
@@ -208,10 +243,32 @@ export function EarlyAccessForm() {
           />
           <span>I&apos;d be interested in helping test Pipit before launch.</span>
         </label>
+        <label className="checkbox-field">
+          <input
+            aria-describedby={errors.consentEmailUpdates ? `${fieldIds.consentEmailUpdates}-error` : undefined}
+            aria-invalid={Boolean(errors.consentEmailUpdates)}
+            checked={form.consentEmailUpdates}
+            id={fieldIds.consentEmailUpdates}
+            onChange={(event) => updateField("consentEmailUpdates", event.target.checked)}
+            required
+            type="checkbox"
+          />
+          <span>{siteContent.earlyAccess.consent}</span>
+        </label>
+        {errors.consentEmailUpdates ? (
+          <p className="error-text" id={`${fieldIds.consentEmailUpdates}-error`}>
+            {errors.consentEmailUpdates}
+          </p>
+        ) : null}
+        <p className="privacy-placeholder">{siteContent.earlyAccess.privacyPlaceholder}</p>
+        {failureMessage ? (
+          <p className="form-error" role="alert">
+            {failureMessage}
+          </p>
+        ) : null}
         {successMessage ? (
           <div className="success-card" role="status">
             <h3>{siteContent.earlyAccess.successHeadline}</h3>
-            <p>{siteContent.earlyAccess.successBody}</p>
             <p>{successMessage}</p>
           </div>
         ) : null}
@@ -232,6 +289,11 @@ function validateForm(form: FormState): Errors {
     if (typeof form[field] === "string" && form[field].trim() === "") {
       errors[field] = "This field is required.";
     }
+
+    if (field === "consentEmailUpdates" && form.consentEmailUpdates !== true) {
+      errors.consentEmailUpdates =
+        "Please confirm email updates so we can contact you about Pipit early access.";
+    }
   }
 
   if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
@@ -239,6 +301,51 @@ function validateForm(form: FormState): Errors {
   }
 
   return errors;
+}
+
+function getAttribution(): Partial<FormState> {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  const currentUrl = new URL(window.location.href);
+  const currentAttribution: Partial<FormState> = {
+    pageUrl: currentUrl.toString(),
+    referrer: document.referrer || "",
+    utmSource: currentUrl.searchParams.get("utm_source") || "",
+    utmMedium: currentUrl.searchParams.get("utm_medium") || "",
+    utmCampaign: currentUrl.searchParams.get("utm_campaign") || "",
+    utmContent: currentUrl.searchParams.get("utm_content") || "",
+    utmTerm: currentUrl.searchParams.get("utm_term") || "",
+  };
+
+  const hasUtm = [
+    currentAttribution.utmSource,
+    currentAttribution.utmMedium,
+    currentAttribution.utmCampaign,
+    currentAttribution.utmContent,
+    currentAttribution.utmTerm,
+  ].some(Boolean);
+
+  if (hasUtm) {
+    window.sessionStorage.setItem(attributionStorageKey, JSON.stringify(currentAttribution));
+    return currentAttribution;
+  }
+
+  const storedAttribution = window.sessionStorage.getItem(attributionStorageKey);
+  if (!storedAttribution) {
+    return currentAttribution;
+  }
+
+  try {
+    return {
+      ...currentAttribution,
+      ...JSON.parse(storedAttribution),
+      pageUrl: currentAttribution.pageUrl,
+    };
+  } catch {
+    return currentAttribution;
+  }
 }
 
 function TextField({

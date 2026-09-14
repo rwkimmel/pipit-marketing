@@ -181,9 +181,14 @@ export function validateLeadCaptureInput(input: unknown): LeadCaptureValidationR
     errors,
   );
   const wish = normalizeOptionalString(input.wish, 2000);
+  const consentEmailUpdates = normalizeBoolean(input.consentEmailUpdates);
 
   if (wish && htmlPattern.test(wish)) {
     errors.wish = "Please remove HTML or markup from this field.";
+  }
+
+  if (!consentEmailUpdates) {
+    errors.consentEmailUpdates = "Please confirm email updates so we can contact you about Pipit early access.";
   }
 
   if (Object.keys(errors).length > 0) {
@@ -207,10 +212,8 @@ export function validateLeadCaptureInput(input: unknown): LeadCaptureValidationR
       monthly_software_spend_band: spend,
       software_frustration: wish || null,
       interested_in_testing: normalizeBoolean(input.testingInterest),
-      consent_email_updates: normalizeBoolean(input.consentEmailUpdates),
-      consent_timestamp: normalizeBoolean(input.consentEmailUpdates)
-        ? new Date().toISOString()
-        : null,
+      consent_email_updates: consentEmailUpdates,
+      consent_timestamp: new Date().toISOString(),
       landing_page_version: "v2.1",
       page_url: normalizeUrlString(input.pageUrl),
       referrer: normalizeUrlString(input.referrer),

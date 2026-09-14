@@ -1,5 +1,7 @@
 # Pipit Lead Capture v1 Phase 1
 
+Historical note: Phase 2 has since wired real server-side Supabase persistence. See `docs/lead-capture-phase-2.md` for the current runtime behavior.
+
 ## Scope
 
 This phase prepares the lead-capture architecture only. It does not create a Supabase project, apply migrations, connect credentials, or enable production persistence.

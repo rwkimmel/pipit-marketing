@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateLeadCaptureInput } from "@/lib/lead-capture-validation";
+import { upsertMarketingLead } from "@/lib/marketing-leads";
 
 export async function POST(request: Request) {
   let payload: unknown;
@@ -31,12 +32,34 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json(
-    {
-      ok: false,
-      message:
-        "Lead capture is not connected yet. Please add the approved Supabase environment variables before enabling persistence.",
-    },
-    { status: 503 },
-  );
+  try {
+    const userAgent = sanitizeUserAgent(request.headers.get("user-agent"));
+    await upsertMarketingLead(result.value, userAgent);
+
+    return NextResponse.json({
+      ok: true,
+      persisted: true,
+      message: "You're in.",
+    });
+  } catch (error) {
+    console.error("Pipit lead capture is unavailable", {
+      errorType: error instanceof Error ? error.name : "UnknownError",
+    });
+
+    return NextResponse.json(
+      {
+        ok: false,
+        message: "Something went wrong while joining the list. Please try again.",
+      },
+      { status: 503 },
+    );
+  }
+}
+
+function sanitizeUserAgent(userAgent: string | null) {
+  if (!userAgent) {
+    return null;
+  }
+
+  return userAgent.trim().slice(0, 500);
 }
