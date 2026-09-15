@@ -371,11 +371,6 @@ small {
   padding: 1rem;
 }
 
-.development-label {
-  color: color-mix(in srgb, var(--color-ink) 58%, white);
-  font-size: 0.9rem;
-}
-
 .preview-topbar,
 .meter-header,
 .form-actions {
@@ -941,15 +936,6 @@ blockquote {
   gap: 0.35rem;
   margin: 0;
   padding-left: 1.35rem;
-}
-
-.pending-config-note {
-  background: color-mix(in srgb, var(--color-yellow) 16%, white);
-  border: 1px solid color-mix(in srgb, var(--color-yellow) 62%, white);
-  border-radius: 8px;
-  color: var(--color-ink);
-  font-weight: 800;
-  padding: 0.85rem;
 }
 
 .contact-section {

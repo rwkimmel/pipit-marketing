@@ -1,12 +1,26 @@
 import { Footer } from "@/components/marketing/footer";
 import { MarketingNav } from "@/components/marketing/nav";
-import { hasConfiguredEmail, siteConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Pipit",
   description:
     "Pipit's working Privacy Policy for the website and early-access program.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Pipit",
+    description:
+      "Pipit's working Privacy Policy for the website and early-access program.",
+    url: "/privacy",
+  },
+  twitter: {
+    title: "Privacy Policy | Pipit",
+    description:
+      "Pipit's working Privacy Policy for the website and early-access program.",
+  },
 };
 
 const informationCollected = [
@@ -40,8 +54,6 @@ const choices = [
 ];
 
 export default function PrivacyPage() {
-  const hasPrivacyEmail = hasConfiguredEmail(siteConfig.privacyEmail);
-
   return (
     <>
       <MarketingNav />
@@ -163,16 +175,9 @@ export default function PrivacyPage() {
 
           <h2>Contact Us</h2>
           <p>If you have questions about this Privacy Policy or your information, contact us at:</p>
-          {hasPrivacyEmail ? (
-            <p>
-              <a href={`mailto:${siteConfig.privacyEmail}`}>{siteConfig.privacyEmail}</a>
-            </p>
-          ) : (
-            <p className="pending-config-note">
-              Privacy contact email pending. Configure PIPIT_PRIVACY_EMAIL before public
-              deployment.
-            </p>
-          )}
+          <p>
+            <a href={`mailto:${siteConfig.privacyEmail}`}>{siteConfig.privacyEmail}</a>
+          </p>
         </article>
       </main>
       <Footer />

@@ -1,18 +1,30 @@
 import { AnalyticsLink } from "@/components/analytics/analytics-link";
 import { Footer } from "@/components/marketing/footer";
 import { MarketingNav } from "@/components/marketing/nav";
-import { hasConfiguredEmail, siteConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact | Pipit",
   description:
     "Contact Pipit about early access and pre-launch questions for salon owners.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact | Pipit",
+    description:
+      "Contact Pipit about early access and pre-launch questions for salon owners.",
+    url: "/contact",
+  },
+  twitter: {
+    title: "Contact | Pipit",
+    description:
+      "Contact Pipit about early access and pre-launch questions for salon owners.",
+  },
 };
 
 export default function ContactPage() {
-  const hasContactEmail = hasConfiguredEmail(siteConfig.contactEmail);
-
   return (
     <>
       <MarketingNav />
@@ -29,15 +41,9 @@ export default function ContactPage() {
 
           <div className="contact-panel" aria-label="Pipit contact email">
             <h2>Contact Email</h2>
-            {hasContactEmail ? (
-              <a className="contact-email" href={`mailto:${siteConfig.contactEmail}`}>
-                {siteConfig.contactEmail}
-              </a>
-            ) : (
-              <p className="pending-config-note">
-                Contact email pending. Configure PIPIT_CONTACT_EMAIL before public deployment.
-              </p>
-            )}
+            <a className="contact-email" href={`mailto:${siteConfig.contactEmail}`}>
+              {siteConfig.contactEmail}
+            </a>
           </div>
 
           <div className="early-access-callout">

@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
 
 export const siteMetadata: Metadata = {
   title: "Pipit | Salon Software That Actually Makes Sense",
   description:
     "Simple, capable salon management software built by salon owners. Pipit is preparing for its first salons.",
-  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-    : undefined,
+  metadataBase: new URL(siteConfig.productionDomain),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Pipit | Salon Software That Actually Makes Sense",
     description:
       "Simple, capable salon management software built by salon owners. Pipit is preparing for its first salons.",
     type: "website",
     siteName: "Pipit",
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
