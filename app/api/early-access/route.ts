@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
+import { sendEarlyAccessEmails } from "@/lib/early-access-email";
 import { validateLeadCaptureInput } from "@/lib/lead-capture-validation";
 import { upsertMarketingLead } from "@/lib/marketing-leads";
+
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   let payload: unknown;
@@ -34,7 +37,22 @@ export async function POST(request: Request) {
 
   try {
     const userAgent = sanitizeUserAgent(request.headers.get("user-agent"));
-    await upsertMarketingLead(result.value, userAgent);
+    const persistedLead = await upsertMarketingLead(result.value, userAgent);
+
+    try {
+      const emailResults = await sendEarlyAccessEmails({
+        lead: result.value,
+        persistedLead,
+      });
+
+      console.info("Pipit early access email attempts completed", {
+        results: emailResults,
+      });
+    } catch (error) {
+      console.error("Pipit early access email attempts failed unexpectedly", {
+        errorType: error instanceof Error ? error.name : "UnknownEmailError",
+      });
+    }
 
     return NextResponse.json({
       ok: true,
