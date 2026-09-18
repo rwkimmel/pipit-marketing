@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { siteMetadata } from "@/lib/metadata";
 
 const inter = Inter({
@@ -24,7 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
+      </body>
     </html>
   );
 }
