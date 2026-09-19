@@ -6,7 +6,10 @@ import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const title = "Why We Built Pipit | Salon Software That Actually Makes Sense";
+const articleHeadline =
+  "We built Pipit because salon software was more complicated than it needed to be.";
+const title =
+  "Why We Built Pipit | Salon Software Was More Complicated Than It Needed To Be";
 const description =
   "Why we started building Pipit after experiencing salon software that felt unnecessarily complex and unintuitive in a real working salon.";
 
@@ -38,7 +41,7 @@ export default function WhyWeBuiltPipitPage() {
         <article className="founder-article">
           <header className="article-header">
             <p className="eyebrow">Founder Note</p>
-            <h1>We built Pipit because salon software stopped making sense</h1>
+            <h1>{articleHeadline}</h1>
             <p className="article-deck">
               A note from inside a working salon about why capable software should not have to
               feel complicated.
@@ -177,7 +180,7 @@ export default function WhyWeBuiltPipitPage() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Article",
-              headline: "We built Pipit because salon software stopped making sense",
+              headline: articleHeadline,
               description,
               url: `${siteConfig.productionDomain.replace(/\/$/, "")}/why-we-built-pipit`,
               publisher: {

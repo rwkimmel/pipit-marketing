@@ -981,7 +981,7 @@ blockquote {
 .founder-article {
   margin: 0 auto;
   max-width: 860px;
-  padding: 4rem 1.25rem 5rem;
+  padding: 5.35rem 1.25rem 5rem;
 }
 
 .article-header,
@@ -1057,6 +1057,18 @@ blockquote {
   gap: 1rem;
   margin-top: 2.6rem;
   padding: 1.3rem;
+}
+
+.article-footer .button-secondary {
+  background: var(--color-warm-white);
+  border-color: var(--color-warm-white);
+  color: var(--color-ink);
+}
+
+.article-footer .button-secondary:hover {
+  background: color-mix(in srgb, var(--color-warm-white) 88%, var(--color-yellow));
+  border-color: var(--color-yellow);
+  color: var(--color-ink);
 }
 
 .article-footer h2 {
