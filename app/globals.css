@@ -772,6 +772,7 @@ blockquote {
 
 .privacy-placeholder a,
 .legal-document a,
+.inline-link,
 .contact-email {
   color: var(--color-deep-teal);
   font-weight: 850;
@@ -971,6 +972,106 @@ blockquote {
 
 .contact-email {
   overflow-wrap: anywhere;
+}
+
+.article-page {
+  background: color-mix(in srgb, var(--color-warm-white) 92%, white);
+}
+
+.founder-article {
+  margin: 0 auto;
+  max-width: 860px;
+  padding: 4rem 1.25rem 5rem;
+}
+
+.article-header,
+.article-body,
+.article-footer {
+  display: grid;
+}
+
+.article-header {
+  gap: 1rem;
+  margin-bottom: 2.2rem;
+}
+
+.article-header h1 {
+  font-size: clamp(2.35rem, 5vw, 4.45rem);
+  max-width: 13ch;
+}
+
+.article-deck {
+  color: var(--color-deep-teal);
+  font-family: var(--font-manrope), Arial, sans-serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 850;
+  line-height: 1.24;
+  max-width: 34ch;
+}
+
+.article-body {
+  gap: 1rem;
+}
+
+.article-body p {
+  color: color-mix(in srgb, var(--color-ink) 82%, white);
+  font-size: 1.08rem;
+  max-width: 68ch;
+}
+
+.article-body strong {
+  color: var(--color-ink);
+}
+
+.article-question-list {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 72%, white);
+  border-left: 6px solid var(--color-teal);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.35rem 0;
+  padding: 1.15rem;
+}
+
+.article-question-list p {
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
+.article-pullquote {
+  border-left: 6px solid var(--color-pink);
+  color: var(--color-deep-teal) !important;
+  font-family: var(--font-manrope), Arial, sans-serif;
+  font-size: clamp(1.45rem, 3vw, 2.15rem) !important;
+  font-weight: 850;
+  line-height: 1.16;
+  margin: 0.45rem 0;
+  padding-left: 1rem;
+}
+
+.article-footer {
+  background: var(--color-ink);
+  border-radius: 8px;
+  color: var(--color-warm-white);
+  gap: 1rem;
+  margin-top: 2.6rem;
+  padding: 1.3rem;
+}
+
+.article-footer h2 {
+  color: var(--color-warm-white);
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+}
+
+.article-footer p {
+  color: color-mix(in srgb, var(--color-warm-white) 82%, transparent);
+  margin-top: 0.65rem;
+  max-width: 56ch;
+}
+
+.article-logo {
+  max-width: 9rem;
 }
 
 @media (max-width: 760px) {

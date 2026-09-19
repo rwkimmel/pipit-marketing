@@ -6,6 +6,7 @@ import { Footer } from "@/components/marketing/footer";
 import { MarketingNav } from "@/components/marketing/nav";
 import { siteContent } from "@/content/site";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -87,6 +88,11 @@ export default function Home() {
               {siteContent.origin.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+              <p>
+                <Link className="inline-link" href="/why-we-built-pipit">
+                  Read why we built Pipit.
+                </Link>
+              </p>
             </div>
             <blockquote>{siteContent.origin.quote}</blockquote>
           </div>

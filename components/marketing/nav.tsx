@@ -42,7 +42,7 @@ export function MarketingNav() {
         ))}
         <AnalyticsLink
           className="button button-primary"
-          href="#early-access"
+          href="/#early-access"
           eventName="nav_get_early_access_click"
           onClick={closeMenu}
         >
