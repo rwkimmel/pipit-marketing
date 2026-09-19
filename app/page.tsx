@@ -90,7 +90,7 @@ export default function Home() {
               ))}
               <p>
                 <Link className="inline-link" href="/why-we-built-pipit">
-                  Read why we built Pipit.
+                  Read the founder note.
                 </Link>
               </p>
             </div>

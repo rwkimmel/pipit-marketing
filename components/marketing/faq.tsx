@@ -10,7 +10,7 @@ type FaqItem = {
 };
 
 export function Faq({ items }: { items: readonly FaqItem[] }) {
-  const [openQuestion, setOpenQuestion] = useState<string | null>(items[0]?.question ?? null);
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
   const idPrefix = useId();
 
   return (

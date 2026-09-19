@@ -9,7 +9,7 @@ export const siteContent = {
   ],
   ctas: {
     primary: "Get Early Access",
-    secondary: "See Why We're Building Pipit",
+    secondary: "Our story",
   },
   hero: {
     eyebrow: "BUILT BY SALON OWNERS",
@@ -39,7 +39,7 @@ export const siteContent = {
     ],
   },
   problem: {
-    eyebrow: "WHY WE BUILT PIPIT",
+    eyebrow: "OUR STORY",
     headline: "Running a salon is complicated enough.",
     supportingLine: "Your software shouldn't make it harder.",
     body: [
