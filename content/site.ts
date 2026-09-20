@@ -39,7 +39,7 @@ export const siteContent = {
     ],
   },
   problem: {
-    eyebrow: "OUR STORY",
+    eyebrow: "WHY PIPIT EXISTS",
     headline: "Running a salon is complicated enough.",
     supportingLine: "Your software shouldn't make it harder.",
     body: [
