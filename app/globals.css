@@ -978,6 +978,37 @@ blockquote {
   background: color-mix(in srgb, var(--color-warm-white) 92%, white);
 }
 
+.nail-salon-hero {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.nail-salon-hero h1 {
+  max-width: 18ch;
+}
+
+.nail-salon-realities {
+  display: grid;
+  gap: 0.65rem 2rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.nail-salon-realities li::marker {
+  color: var(--color-deep-teal);
+}
+
+@media (min-width: 940px) {
+  .nail-salon-hero {
+    align-items: start;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .nail-salon-realities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .founder-article {
   margin: 0 auto;
   max-width: 860px;

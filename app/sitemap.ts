@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { path: "", priority: 1 },
+    { path: "/nail-salon-software", priority: 0.8 },
     { path: "/why-we-built-pipit", priority: 0.6 },
     { path: "/privacy", priority: 0.4 },
     { path: "/contact", priority: 0.4 },

@@ -36,6 +36,11 @@ export default function Home() {
               </AnalyticsLink>
             </div>
             <p className="microcopy">{siteContent.hero.smallLine}</p>
+            <p>
+              <Link className="inline-link" href="/nail-salon-software">
+                Running a nail salon? Explore Pipit for nail salons.
+              </Link>
+            </p>
           </div>
           <div className="hero-visual" aria-label="Pipit brand and product preview">
             <div className="hero-logo-frame">
