@@ -984,28 +984,144 @@ blockquote {
 }
 
 .nail-salon-hero h1 {
-  max-width: 18ch;
+  max-width: 19ch;
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+}
+
+.nail-salon-page h1,
+.nail-salon-page h2,
+.nail-salon-page .article-pullquote {
+  text-wrap: balance;
+}
+
+.nail-salon-page p,
+.nail-salon-page li {
+  text-wrap: pretty;
+}
+
+.nail-salon-page h2 {
+  max-width: 28ch;
+}
+
+.nail-salon-page .article-body p,
+.nail-salon-page .qualification-band p,
+.nail-salon-page .final-cta p {
+  max-width: 62ch;
+}
+
+.nail-salon-page .hero-subhead {
+  max-width: 36ch;
+}
+
+.nail-capability-section,
+.nail-operators-section,
+.nail-section-heading,
+.nail-operators-layout {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.nail-section-heading {
+  gap: 1rem;
+}
+
+.nail-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nail-capability-grid li {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 72%, white);
+  border-top: 3px solid var(--color-teal);
+  border-radius: 8px;
+  font-weight: 800;
+  padding: 0.85rem 1rem;
+}
+
+.nail-capability-grid li:nth-child(4n + 2),
+.nail-capability-grid li:nth-child(4n + 3) {
+  border-top-color: var(--color-pink);
+}
+
+.nail-capability-section > .article-body {
+  max-width: 760px;
+}
+
+.nail-operator-anchor {
+  align-self: start;
+  background: color-mix(in srgb, var(--color-teal) 7%, white);
+  border-radius: 8px;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+.nail-operator-support {
+  border-bottom: 1px solid var(--color-gray);
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+}
+
+.nail-operator-support p {
+  font-weight: 700;
 }
 
 .nail-salon-realities {
   display: grid;
-  gap: 0.65rem 2rem;
+  gap: 0.75rem;
+  list-style: none;
   margin: 0;
-  padding-left: 1.25rem;
+  padding: 0;
 }
 
-.nail-salon-realities li::marker {
-  color: var(--color-deep-teal);
+.nail-salon-realities li {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 72%, white);
+  border-left: 4px solid var(--color-teal);
+  border-radius: 8px;
+  padding: 1rem 1.15rem;
+}
+
+.nail-salon-closing {
+  margin-top: 0.5rem;
+  max-width: 36ch !important;
+}
+
+.nail-salon-page .section-shell > *,
+.nail-operators-layout > * {
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .nail-salon-realities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nail-salon-realities li:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .nail-capability-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 940px) {
-  .nail-salon-hero {
+  .nail-salon-hero,
+  .nail-operators-layout {
     align-items: start;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 3rem;
   }
 
-  .nail-salon-realities {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .nail-salon-page .split-section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
   }
 }
 

@@ -27,6 +27,7 @@ const faq = [
   },
   {
     question: "Is Pipit available now?",
+    earlyAccessLink: true,
     answer: "Pipit is currently in Early Access. We’re still building and refining the product.",
   },
   {
@@ -73,11 +74,18 @@ export default function NailSalonSoftwarePage() {
         </section>
 
         <section className="value-strip" aria-labelledby="easy-title">
-          <div className="section-shell split-section">
-            <div><h2 id="easy-title">Easy shouldn&apos;t mean limited</h2></div>
-            <div className="article-body">
+          <div className="section-shell nail-capability-section">
+            <header className="nail-section-heading">
+              <h2 id="easy-title">Easy shouldn&apos;t mean limited</h2>
               <p>Salon owners need real functionality.</p>
-              <p>Scheduling. Checkout. Client history. Staff management. Reporting. Payments. Rebooking. Operations.</p>
+            </header>
+            <ul className="nail-capability-grid">
+              {[
+                "Scheduling.", "Checkout.", "Client history.", "Staff management.",
+                "Reporting.", "Payments.", "Rebooking.", "Operations.",
+              ].map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <div className="article-body">
               <p>The answer isn&apos;t stripped-down software that can&apos;t handle a growing salon.</p>
               <p>It&apos;s software that can do what you need without making you work for it.</p>
               <p>The best software should feel obvious.</p>
@@ -107,13 +115,17 @@ export default function NailSalonSoftwarePage() {
           </div>
         </section>
 
-        <section className="section-shell split-section" aria-labelledby="operators-title">
-          <div><h2 id="operators-title">Built for people who have salons to run</h2></div>
-          <div className="article-body">
-            <p>Salon owners shouldn&apos;t have to become software experts.</p>
-            <p>Your team shouldn&apos;t need a manual for every routine task.</p>
-            <p>And adding capability shouldn&apos;t automatically mean adding complexity.</p>
-            <p>Pipit is being built for salon owners who want software that helps them run the business—and then gets out of the way.</p>
+        <section className="section-shell nail-operators-section" aria-labelledby="operators-title">
+          <h2 id="operators-title">Built for people who have salons to run</h2>
+          <div className="nail-operators-layout">
+            <p className="article-pullquote nail-operator-anchor">Salon owners shouldn&apos;t have to become software experts.</p>
+            <div className="article-body">
+              <div className="nail-operator-support">
+                <p>Your team shouldn&apos;t need a manual for every routine task.</p>
+                <p>And adding capability shouldn&apos;t automatically mean adding complexity.</p>
+              </div>
+              <p>Pipit is being built for salon owners who want software that helps them run the business—and then gets out of the way.</p>
+            </div>
           </div>
         </section>
 
@@ -130,7 +142,7 @@ export default function NailSalonSoftwarePage() {
               ].map((item) => <li key={item}>{item}</li>)}
             </ul>
             <p>But the principle underneath all of it is simple:</p>
-            <p className="closing-line">The salon should be the complicated part. The software shouldn&apos;t be.</p>
+            <p className="article-pullquote nail-salon-closing">The salon should be the complicated part. The software shouldn&apos;t be.</p>
           </div>
         </section>
 

@@ -6,6 +6,7 @@ export type AnalyticsEventName =
   | "qualification_get_early_access_click"
   | "final_get_early_access_click"
   | "article_get_early_access_click"
+  | "faq_get_early_access_click"
   | "early_access_form_started"
   | "early_access_form_submit_attempted"
   | "early_access_form_submit_success"
@@ -113,6 +114,7 @@ const ctaLocations = {
   qualification_get_early_access_click: "qualification",
   final_get_early_access_click: "final",
   article_get_early_access_click: "founder_article",
+  faq_get_early_access_click: "faq",
 } satisfies Partial<Record<AnalyticsEventName, string>>;
 
 function isEarlyAccessCtaEvent(

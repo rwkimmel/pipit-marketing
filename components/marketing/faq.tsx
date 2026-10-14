@@ -3,10 +3,12 @@
 import { useId, useState } from "react";
 import type { AnalyticsEventName } from "@/lib/analytics";
 import { trackEvent } from "@/lib/analytics";
+import { AnalyticsLink } from "@/components/analytics/analytics-link";
 
 type FaqItem = {
   question: string;
   answer: string;
+  earlyAccessLink?: boolean;
 };
 
 export function Faq({ items }: { items: readonly FaqItem[] }) {
@@ -48,7 +50,22 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
                 id={panelId}
                 role="region"
               >
-                <p>{item.answer}</p>
+                <p>
+                  {item.answer}
+                  {item.earlyAccessLink ? (
+                    <>
+                      {" "}
+                      <AnalyticsLink
+                        className="inline-link"
+                        href="/#early-access"
+                        eventName="faq_get_early_access_click"
+                        payload={{ question: item.question }}
+                      >
+                        Get Early Access.
+                      </AnalyticsLink>
+                    </>
+                  ) : null}
+                </p>
               </div>
             ) : null}
           </div>
